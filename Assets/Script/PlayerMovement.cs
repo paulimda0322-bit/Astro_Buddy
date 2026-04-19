@@ -2,9 +2,14 @@ using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
+
 {
     public float speed = 5f;
     public int score =0;
+    public GameObject Pistola;
+    public int estrellasParaPistola= 3;
+    public bool hasPistola= false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +36,20 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Star collected!");
             Debug.Log("Score:"+ score); 
-          
+
+         if(score>=3)
+            {
+                Pistola.SetActive(true);
+                Debug.Log("Pistola desbloqueada");
+            }
         } 
+        if(other.CompareTag("Pistola"))
+        {
+            hasPistola = true;
+            Destroy(other.gameObject);
+            Debug.Log("Pistola recogida");
+
+        }
+       
     }
 }
